@@ -30,12 +30,7 @@ const mainNavItems = [
     badgeColor: "badge-error",
     link: "/trending",
   },
-  {
-    icon: <MdOutlineCategory size={18} />,
-    label: "Categories",
-    tip: "Categories",
-    link: "/category",
-  },
+
   {
     icon: <IoMdBookmark size={18} />,
     label: "Bookmarks",
@@ -56,13 +51,6 @@ const mainNavItems = [
     tip: "Analytics",
     link: "/analytics",
   },
-];
-
-const categories = [
-  { name: "World", color: "bg-error", link: "/" },
-  { name: "Business", color: "bg-success", link: "/" },
-  { name: "Sports", color: "bg-warning", link: "/" },
-  { name: "Entertainment", color: "bg-info", link: "/" },
 ];
 
 //   "#AI",
@@ -270,87 +258,6 @@ export default function Dashboard() {
             <span className="text-xl font-bold tracking-tight text-primary">
               NewsFlow
             </span>
-          </div>
-
-          <div className="flex justify-between items-center gap-10">
-            {/* Search Bar */}
-            <label className="input">
-              <svg
-                className="h-[1em] opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </g>
-              </svg>
-              <input type="search" className="grow" placeholder="Search" />
-              <kbd className="kbd kbd-sm">⌘</kbd>
-              <kbd className="kbd kbd-sm">K</kbd>
-            </label>
-            {/* Dropdown Link - Shows on Hover */}
-            <li className="relative group ">
-              <NavLink
-                to="/category"
-                className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-              >
-                CATEGORIES
-                <BiChevronDown
-                  size={16}
-                  className="group-hover:rotate-180 transition-transform"
-                />
-              </NavLink>
-
-              {/* Dropdown Menu - Hidden by default, shows on hover */}
-              <div className="absolute top-full left-0 mt-2 w-48 bg-[#161b22] border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                {categories.map((cat, i) => (
-                  <li key={i}>
-                    <NavLink
-                      to={cat.link}
-                      className="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left hover:bg-base-300 transition-colors text-sm"
-                    >
-                      <span
-                        className={`w-2 h-2 rounded-full flex-shrink-0 ${cat.color}`}
-                      />
-                      {cat.name}
-                    </NavLink>
-                  </li>
-                ))}
-                {/* <ul className="py-2">
-                  <li>
-                    <a
-                      href="/services/web-dev"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
-                    >
-                      Web Development
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/services/app-dev"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
-                    >
-                      App Development
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/services/ui-design"
-                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
-                    >
-                      UI/UX Design
-                    </a>
-                  </li>
-                </ul> */}
-              </div>
-            </li>
           </div>
         </nav>
 
