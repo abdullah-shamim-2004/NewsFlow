@@ -1,3 +1,4 @@
+import { BiChevronDown } from "react-icons/bi";
 import { BsLayoutSidebarInset, BsGlobe2 } from "react-icons/bs";
 import {
   IoMdHome,
@@ -13,92 +14,6 @@ import {
 } from "react-icons/io";
 import { MdOutlineCategory, MdAnalytics, MdLogout } from "react-icons/md";
 import { NavLink, Outlet } from "react-router";
-
-// ── Demo Data ──────────────────────────────────────────────
-// const featuredNews = {
-//   category: "Technology",
-//   title: "OpenAI Unveils GPT-5 with Breakthrough Reasoning Capabilities",
-//   summary:
-//     "The latest model demonstrates unprecedented problem-solving skills, scoring near-perfect on graduate-level benchmarks across science, law, and medicine.",
-//   author: "Sarah Chen",
-//   avatar: "https://i.pravatar.cc/30?img=5",
-//   time: "2 hours ago",
-//   views: "48.2K",
-// };
-
-// const newsList = [
-//   {
-//     id: 1,
-//     category: "Politics",
-//     categoryColor: "badge-error",
-//     title: "Global Summit Reaches Historic Climate Agreement",
-//     author: "James Okafor",
-//     time: "4h ago",
-//     views: "31.7K",
-//     hot: true,
-//   },
-//   {
-//     id: 2,
-//     category: "Finance",
-//     categoryColor: "badge-success",
-//     title: "Bitcoin Surges Past $150,000 as Institutional Demand Spikes",
-//     author: "Priya Mehta",
-//     time: "5h ago",
-//     views: "22.4K",
-//     hot: false,
-//   },
-//   {
-//     id: 3,
-//     category: "Science",
-//     categoryColor: "badge-warning",
-//     title: "NASA's Artemis IV Crew Successfully Lands on Lunar South Pole",
-//     author: "Carlos Rivera",
-//     time: "6h ago",
-//     views: "19.1K",
-//     hot: false,
-//   },
-//   {
-//     id: 4,
-//     category: "Health",
-//     categoryColor: "badge-info",
-//     title: "WHO Declares New Vaccine Effective Against 12 Cancer Types",
-//     author: "Amina Hassan",
-//     time: "8h ago",
-//     views: "15.6K",
-//     hot: true,
-//   },
-// ];
-
-// const stats = [
-//   {
-//     label: "Total Articles",
-//     value: "2,840",
-//     icon: <BsGlobe2 size={20} />,
-//     color: "text-primary",
-//     bg: "bg-primary/10",
-//   },
-//   {
-//     label: "Total Views",
-//     value: "1.2M",
-//     icon: <IoMdEye size={20} />,
-//     color: "text-success",
-//     bg: "bg-success/10",
-//   },
-//   {
-//     label: "Bookmarks",
-//     value: "348",
-//     icon: <IoMdBookmark size={20} />,
-//     color: "text-warning",
-//     bg: "bg-warning/10",
-//   },
-//   {
-//     label: "Subscribers",
-//     value: "9,210",
-//     icon: <IoMdPeople size={20} />,
-//     color: "text-error",
-//     bg: "bg-error/10",
-//   },
-// ];
 
 const mainNavItems = [
   {
@@ -144,13 +59,12 @@ const mainNavItems = [
 ];
 
 const categories = [
-  { name: "World", color: "bg-error" },
-  { name: "Business", color: "bg-success" },
-  { name: "Sports", color: "bg-warning" },
-  { name: "Entertainment", color: "bg-info" },
+  { name: "World", color: "bg-error", link: "/" },
+  { name: "Business", color: "bg-success", link: "/" },
+  { name: "Sports", color: "bg-warning", link: "/" },
+  { name: "Entertainment", color: "bg-info", link: "/" },
 ];
 
-// const trendingTags = [
 //   "#AI",
 //   "#ClimateChange",
 //   "#Bitcoin",
@@ -357,6 +271,87 @@ export default function Dashboard() {
               NewsFlow
             </span>
           </div>
+
+          <div className="flex justify-between items-center gap-10">
+            {/* Search Bar */}
+            <label className="input">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input type="search" className="grow" placeholder="Search" />
+              <kbd className="kbd kbd-sm">⌘</kbd>
+              <kbd className="kbd kbd-sm">K</kbd>
+            </label>
+            {/* Dropdown Link - Shows on Hover */}
+            <li className="relative group ">
+              <NavLink
+                to="/category"
+                className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
+              >
+                CATEGORIES
+                <BiChevronDown
+                  size={16}
+                  className="group-hover:rotate-180 transition-transform"
+                />
+              </NavLink>
+
+              {/* Dropdown Menu - Hidden by default, shows on hover */}
+              <div className="absolute top-full left-0 mt-2 w-48 bg-[#161b22] border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                {categories.map((cat, i) => (
+                  <li key={i}>
+                    <NavLink
+                      to={cat.link}
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left hover:bg-base-300 transition-colors text-sm"
+                    >
+                      <span
+                        className={`w-2 h-2 rounded-full flex-shrink-0 ${cat.color}`}
+                      />
+                      {cat.name}
+                    </NavLink>
+                  </li>
+                ))}
+                {/* <ul className="py-2">
+                  <li>
+                    <a
+                      href="/services/web-dev"
+                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
+                    >
+                      Web Development
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/services/app-dev"
+                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
+                    >
+                      App Development
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/services/ui-design"
+                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#21262d] hover:text-white transition-colors"
+                    >
+                      UI/UX Design
+                    </a>
+                  </li>
+                </ul> */}
+              </div>
+            </li>
+          </div>
         </nav>
 
         {/* Page Content */}
@@ -419,21 +414,10 @@ export default function Dashboard() {
             ))}
 
             {/* Categories Section */}
-            <div className="divider my-1 opacity-20" />
+            {/* <div className="divider my-1 opacity-20" />
             <li className="menu-title px-3 py-1 text-xs tracking-widest opacity-40">
-              CATEGORIES
-            </li>
-
-            {categories.map((cat, i) => (
-              <li key={i}>
-                <button className="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left hover:bg-base-300 transition-colors text-sm">
-                  <span
-                    className={`w-2 h-2 rounded-full flex-shrink-0 ${cat.color}`}
-                  />
-                  {cat.name}
-                </button>
-              </li>
-            ))}
+              
+            </li> */}
           </ul>
 
           {/* Bottom: Settings + Logout + User */}
